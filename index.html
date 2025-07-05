@@ -1,4 +1,3 @@
-seperti ini aja bang
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,31 +5,151 @@ seperti ini aja bang
   <title>Donate for Down Syndrome Children</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-align: center;
-      padding: 40px;
-      background: #f4f4f4;
+      padding: 50px 20px;
+      animation: fadeIn 1s ease-in-out;
     }
-    h1 { color: #222; }
-    p { font-size: 18px; color: #444; }
-    .wallet {
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 34px;
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    p {
       font-size: 18px;
-      font-weight: bold;
-      margin: 20px 0;
+      color: #cbd5e1;
+      margin: 8px 0;
+    }
+
+    .wallet-box {
+      background: #1e293b;
+      border: 2px dashed #38bdf8;
+      padding: 20px;
+      border-radius: 10px;
+      width: fit-content;
+      margin: 30px auto 15px;
+      font-size: 16px;
+      color: #7dd3fc;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    .copy-btn {
+      background-color: #38bdf8;
+      color: #0f172a;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .copy-btn:hover {
+      background-color: #0ea5e9;
+    }
+
+    .qr-code {
+      background: #1e293b;
+      display: inline-block;
+      padding: 15px;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .qr-code img {
+      width: 200px;
+      height: 200px;
+    }
+
+    .copied-msg {
+      color: #4ade80;
+      font-size: 14px;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .share-buttons {
+      margin-top: 30px;
+    }
+
+    .share-buttons a {
+      display: inline-block;
+      margin: 10px 10px;
+      padding: 10px 16px;
+      font-size: 14px;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #fff;
+      transition: opacity 0.3s;
+    }
+
+    .whatsapp {
+      background-color: #25D366;
+    }
+
+    .twitter {
+      background-color: #1DA1F2;
+    }
+
+    .share-buttons a:hover {
+      opacity: 0.85;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 26px; }
+      p, .wallet-box { font-size: 15px; }
+      .qr-code img { width: 160px; height: 160px; }
     }
   </style>
 </head>
 <body>
-  <h1>Support Children with Down Syndrome</h1>
-  <p>"Together, we can make a difference."</p>
-  <p>"Every donation brings new hope."</p>
 
-  <div class="wallet">
+  <h1>Support Children with Down Syndrome</h1>
+  <p><em>"Together, we can make a difference."</em></p>
+  <p><em>"Every donation brings new hope."</em></p>
+
+  <div class="wallet-box" id="walletBox">
     Ethereum Wallet Address:<br>
-    <code>0x656D33D494357Ce89E38346A2B0137e0Be7bB5c2</code>
+    <code id="wallet">0x656D33D494357Ce89E38346A2B0137e0Be7bB5c2</code><br>
+    <button class="copy-btn" onclick="copyWallet()">📋 Copy Address</button>
+    <div class="copied-msg" id="copiedMsg">Wallet address copied!</div>
   </div>
 
   <p>Scan this QR code to donate:</p>
-  <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0x656D33D494357Ce89E38346A2B0137e0Be7bB5c2" alt="Ethereum QR Code">
+  <div class="qr-code">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0x656D33D494357Ce89E38346A2B0137e0Be7bB5c2" alt="Ethereum QR Code">
+  </div>
+
+  <div class="share-buttons">
+    <a class="whatsapp" href="https://wa.me/?text=Support%20Children%20with%20Down%20Syndrome!%20Donate%20ETH%20to%200x656D33D494357Ce89E38346A2B0137e0Be7bB5c2" target="_blank">📲 Share via WhatsApp</a>
+
+    <a class="twitter" href="https://twitter.com/intent/tweet?text=Support%20Children%20with%20Down%20Syndrome%20by%20donating%20ETH%20to%200x656D33D494357Ce89E38346A2B0137e0Be7bB5c2" target="_blank">🐦 Share on Twitter</a>
+
+    <a class="whatsapp" href="https://wa.me/447440014278?text=Halo%20Bang%20Kongali,%20saya%20tertarik%20membantu%20donasi%20anak-anak%20Down%20Syndrome." target="_blank">💬 Chat Admin via WhatsApp</a>
+  </div>
+
+  <script>
+    function copyWallet() {
+      const walletText = document.getElementById("wallet").textContent;
+      navigator.clipboard.writeText(walletText).then(() => {
+        const msg = document.getElementById("copiedMsg");
+        msg.style.display = "block";
+        setTimeout(() => msg.style.display = "none", 2000);
+      });
+    }
+  </script>
+
 </body>
 </html>
+
